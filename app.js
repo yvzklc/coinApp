@@ -35,7 +35,7 @@ const showData = (veri) => {
       tbody.innerHTML += `<tr>
       <th scope="row">${x.data.coins[i].rank}</th>
       <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].name}</td>
-      <td>${x.data.coins[i].symbol}</td>
+      <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].symbol}</td>
       <td>${x.data.coins[i].price}</td>
      
       <td> <img style="width: 25px; height: 25px;" src="${x.data.coins[i].iconUrl}" alt=""></td>
