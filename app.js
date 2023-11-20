@@ -10,37 +10,48 @@ const options = {
 const API_URL = "https://api.coinranking.com/v2/coins', options";
 const getData = () => {
   fetch("https://api.coinranking.com/v2/coins", options)
-  .then((res) => { 
-    if(!res.ok){
-        throw new error("Something went wrong",res.status)
-    }
-    return res.json() 
-})
-.then((veri) => showData(veri))
-.catch((err) => console.log(err,res.status))
-}
-
-      
+    .then((res) => {
+      if (!res.ok) {
+        throw new error("Something went wrong", res.status);
+      }
+      return res.json();
+    })
+    .then((veri) => showData(veri))
+    .catch((err) => console.log(err, res.status));
+};
 
 const showData = (veri) => {
   // const { ...coins} = veri.data;
   // const { name, symbol, price, iconUrl, change, color } = coins;
-      var x = {data: {coins: [name, symbol, price, iconUrl, change, color]}} = veri
-    //    console.log(ilkkedi)
+  var x = ({
+    data: {
+      coins: [name, symbol, price, iconUrl, change, color],
+    },
+  } = veri);
+  //    console.log(ilkkedi)
 
-   for(let i=0;i<50;i++){
-    tbody.innerHTML +=   `<tr>
-    <th scope="row">${x.data.coins[i].rank}</th>
-    <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].name}</td>
-    <td>${x.data.coins[i].symbol}</td>
-    <td>${x.data.coins[i].price}</td>
-   
-    <td> <img style="width: 25px; height: 25px;" src="${x.data.coins[i].iconUrl}" alt=""></td>
-    <td >${x.data.coins[i].change}</td>
-  </tr>`
+  for (let i = 0; i < 50; i++) {
+    inner = (y) => {
+      tbody.innerHTML += `<tr>
+      <th scope="row">${x.data.coins[i].rank}</th>
+      <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].name}</td>
+      <td>${x.data.coins[i].symbol}</td>
+      <td>${x.data.coins[i].price}</td>
+     
+      <td> <img style="width: 25px; height: 25px;" src="${x.data.coins[i].iconUrl}" alt=""></td>
+      <td class="${y}">${x.data.coins[i].change}</td>
+      
+    </tr>`;
+    };
+    if (x.data.coins[i].change < 0) {
+      inner("red");
+    } else if (x.data.coins[i].change > 0) {
+      inner("green");
+    } else {
+      inner("gray");
+    }
   }
-
-}
+};
 // {
 //   "uuid": "Qwsogvtv82FCd",
 //   "symbol": "BTC",
@@ -84,6 +95,5 @@ const showData = (veri) => {
 //   "24hVolume": "14995081847",
 //   "btcPrice": "1"
 // }
-
 
 getData();
