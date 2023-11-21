@@ -1,11 +1,11 @@
 coinApp
 
-This software using cryptoranking api 
+This software using [coinranking](https://coinranking.com/) api 
 
 Features:<br>
--50 coins
+-Top 50 coins
 <br>
--marketcap,change,icon etc. real datas
+-Real datas in market
 <br>
 -search coins
 
