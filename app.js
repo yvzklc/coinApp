@@ -1,4 +1,5 @@
 const tbody = document.querySelector(".tbody");
+
 const options = {
   headers: {
     "Content-Type": "application/json",
@@ -16,20 +17,18 @@ const getData = () => {
       }
       return res.json();
     })
-    .then((veri) => showData(veri))
-    .catch((err) => console.log(err, res.status));
+    .then((Data) => DataList(Data))
+    .catch((err) => console.error(err, res.status));
 };
 
-const showData = (veri) => {
-  // const { ...coins} = veri.data;
-  // const { name, symbol, price, iconUrl, change, color } = coins;
+const DataList = function(Data){
   var x = ({
     data: {
       coins: [name, symbol, price, iconUrl, change, color],
     },
-  } = veri);
-  //    console.log(ilkkedi)
-
+  } = Data);
+ 
+  
   for (let i = 0; i < 50; i++) {
     inner = (y) => {
       tbody.innerHTML += `<tr>
@@ -38,62 +37,66 @@ const showData = (veri) => {
       <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].symbol}</td>
       <td>${x.data.coins[i].price}</td>
      
-      <td> <img style="width: 25px; height: 25px;" src="${x.data.coins[i].iconUrl}" alt=""></td>
+      <td> <img style="width: 35px; height: 35px;" src="${x.data.coins[i].iconUrl}" alt=""></td>
       <td class="${y}">${x.data.coins[i].change}</td>
       
     </tr>`;
     };
-    if (x.data.coins[i].change < 0) {
+ 
+   ValueKeyPress = () => {
+    document.querySelector(".tbody").innerHTML = ""
+
+    for(let i = 0; i<50;i++){
+     
+      search = (y) => {
+        tbody.innerHTML += `<tr>
+        <th scope="row">${x.data.coins[i].rank}</th>
+        <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].name}</td>
+        <td style="color: ${x.data.coins[i].color}">${x.data.coins[i].symbol}</td>
+        <td>${x.data.coins[i].price}</td>
+       
+        <td> <img style="width: 35px; height: 35px;" src="${x.data.coins[i].iconUrl}" alt=""></td>
+        <td class="${y}">${x.data.coins[i].change}</td>
+        
+      </tr>`;
+      };
+    
+      const input = document.querySelector("input")
+      let coinName = [x]
+      let value = input.value
+    
+     
+      let filtered = coinName.filter((coin) =>
+      coin.data.coins[i].name.toLowerCase().includes(value.toLowerCase())
+    );
+    filtered.forEach((coin) => {
+    
+      if (x.data.coins[i].change < 0 ) {
+      search("red");
+    } else if (x.data.coins[i].change > 0) {
+      search("green");
+    } else {
+      search("gray");
+    
+}
+   
+    });
+  
+  
+   
+    
+    }
+  }
+    if (x.data.coins[i].change < 0 ) {
       inner("red");
     } else if (x.data.coins[i].change > 0) {
       inner("green");
     } else {
       inner("gray");
-    }
+    
+}
   }
 };
-// {
-//   "uuid": "Qwsogvtv82FCd",
-//   "symbol": "BTC",
-//   "name": "Bitcoin",
-//   "color": "#f7931A",
-//   "iconUrl": "https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg",
-//   "marketCap": "726831506462",
-//   "price": "37182.32723357054",
-//   "listedAt": 1330214400,
-//   "tier": 1,
-//   "change": "1.80",
-//   "rank": 1,
-//   "sparkline": [
-//       "36519.45831668425",
-//       "36494.62995791668",
-//       "36522.047143687596",
-//       "36497.251753666555",
-//       "36544.32498155906",
-//       "36609.17762042013",
-//       "36596.90893543231",
-//       "36759.61231252904",
-//       "36893.67649919421",
-//       "36946.33872499881",
-//       "36988.259249183466",
-//       "37012.12551282414",
-//       "37412.143095654465",
-//       "37308.88031199907",
-//       "37346.92926526186",
-//       "37311.17818858464",
-//       "37250.11574823003",
-//       "37180.347095995945",
-//       "37182.153706177814",
-//       "37182.79478144423",
-//       "37198.95523787212",
-//       "37210.92819162083",
-//       "37184.94975531804",
-//       null
-//   ],
-//   "lowVolume": false,
-//   "coinrankingUrl": "https://coinranking.com/coin/Qwsogvtv82FCd+bitcoin-btc",
-//   "24hVolume": "14995081847",
-//   "btcPrice": "1"
-// }
+
 
 getData();
