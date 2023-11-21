@@ -1,7 +1,8 @@
 coinApp
 
 This software using cryptoranking api 
-Features
+
+Features:
 -50 coin
 -marketcap,change,icon etc. real datas
 -search coins
