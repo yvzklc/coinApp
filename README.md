@@ -7,7 +7,7 @@ Features:<br>
 <br>
 -Real datas in market
 <br>
--search coins
+-Search coins
 
 Screenshot
 ![](./img/projectImg.png)
