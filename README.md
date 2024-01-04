@@ -5,7 +5,7 @@ This software using [coinranking](https://coinranking.com/) api
 Features:<br>
 -Top 50 coins
 <br>
--Real datas in market
+-Real data's in market
 <br>
 -Search coins
 
