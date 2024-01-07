@@ -1,6 +1,6 @@
 coinApp
 
-This software using [coinranking](https://coinranking.com/) api 
+This software using [coinranking](https://coinranking.com/) api. 
 
 Features:<br>
 -Top 50 coins
